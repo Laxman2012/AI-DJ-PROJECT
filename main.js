@@ -6,6 +6,8 @@ rightWristx = "";
 rightWristy = "";
 hope_status = "";
 bones_status = "";
+scoreLeftWrist = "";
+scoreRightWrist = "";
 
 function preload()
 {
@@ -35,7 +37,61 @@ function draw()
 
    image(video , 0 , 0 , 600 , 500);
 
+   fill("#30D5C8");
+   stroke("#30D5C8");
+
+   hope_status = hope.isPlaying();
+   bones_status = bones.isPlaying();
+
+   if(scoreRightWrist > 0.2)
+   {
+
+      circle(rightWristx , rightWristy , 20)
+
+      bones.stop();
+
+      if(hope_status == false)
+      {
+
+        hope.play();
+        document.getElementById("song").innerHTML = "Playing : Hope";
+
+      }
+
+   }
+
+
+   if(scoreLeftWrist > 0.2)
+   {
+
+      circle(leftWristx , leftWristy , 20)
+
+      hope.stop();
+
+      if(bones_status == false)
+      {
+
+        bones.play();
+        document.getElementById("song").innerHTML = "Playing : bones";
+
+      }
+
+   }
+
+   
 }
+
+function play()
+{
+ 
+  song.play();
+  song.setVolume(1);
+  song.rate(1);
+
+}
+
+
+
 
 function modelLoaded()
 {
